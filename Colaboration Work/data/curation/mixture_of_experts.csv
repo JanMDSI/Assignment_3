@@ -1,0 +1,2 @@
+model_name,evidence
+Switch,"Epoch's parameter note describes expert parallelism and the paper is about sparse mixture of experts layers (https://arxiv.org/abs/2101.03961), so only part of the 1.57 trillion parameters is used for each token."

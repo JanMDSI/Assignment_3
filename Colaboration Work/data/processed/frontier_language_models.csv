@@ -1,0 +1,146 @@
+raw_row,model_name,release_year,decimal_year,publication_date,organization,organization_sector,domain,domain_group,parameters,training_dataset_size,training_compute_flops,compute_method,frontier_model,confidence,base_model,source_link,parameters_notes,dataset_size_notes,last_modified,fresh_dense,exclusion_reason
+3030,GPT-2 (355M),2019,2019.1205,2019-02-14,OpenAI,Industry,Language,Language,355000000.0,10666666666.666666,2.272000000071e+21,Not recorded,True,Speculative,,https://openai.com/blog/better-language-models/,"Note that the initial paper release stated GPT-2 medium had 345M parameters. The official github repo notes that this was due to an error:
+https://github.com/openai/gpt-2?tab=readme-ov-file","“All results presented in this paper use a preliminary version of WebText which does not include links created after Dec 2017 and which after de-duplication and some heuristic based cleaning contains slightly over 8 million documents for a total of 40 GB of text.”
+40GB is approximately 3e9 words or 1.07e10 tokens.",2026-02-11 19:26:27+00:00,True,
+3029,GPT-2 (774M),2019,2019.1205,2019-02-14,OpenAI,Industry,Language,Language,774000000.0,10666666666.666666,4.9536e+21,Not recorded,True,Speculative,,https://d4mucfpksywv.cloudfront.net/better-language-models/language_models_are_unsupervised_multitask_learners.pdf,"Note that the initial paper release stated GPT-2 large had 762M parameters. The official github repo notes that this was due to an error:
+https://github.com/openai/gpt-2?tab=readme-ov-file",40GB * 200*10^6 words per GB * 4/3 tokens per word = 10666666666.7 tokens,2026-02-11 19:26:27+00:00,True,
+2982,Grover-Mega,2019,2019.4052,2019-05-29,University of Washington,Academia,Language,Language,1500000000.0,32000000000.0,4.6386183e+21,"Hardware,Operation counting",True,Confident,,https://arxiv.org/abs/1905.12616,"""Our largest model, Grover-Mega, has 48 layers and 1.5 billion parameters, on par with GPT2""","""We trained Grover-Mega for 800k iterations, using a batch size of 512 and 256 TPU v3 cores.""
+
+""We trained each Grover model on randomly-sampled sequences from RealNews with length 1024.""
+
+""After deduplication, RealNews is 120 gigabytes without compression.""
+
+120 GB * 200M English words per GB / 0.75 English words per token = 32000000000 tokens
+
+800000 * 512 * 1024 / 32000000000 ~ 13 epochs",2026-05-25 12:10:50+00:00,True,
+2924,Megatron-BERT,2019,2019.7091,2019-09-17,Nvidia,Industry,Language,Language,3900000000.0,6960000000.0,2.2e+22,"Operation counting,Third-party estimation",True,Confident,,https://arxiv.org/abs/1909.08053,Table 4,"""The resulting aggregate corpus contains 174 GB of deduplicated text.""
+174e9 bytes * (1 word / 5 bytes) * (4 tokens / 3 words) = 4.64e10 tokens",2026-05-25 12:11:22+00:00,True,
+2925,Megatron-LM (8.3B),2019,2019.7091,2019-09-17,Nvidia,Industry,Language,Language,8300000000.0,46400000000.0,9.1e+21,"Hardware,Operation counting,Third-party estimation",True,Likely,,https://arxiv.org/abs/1909.08053,"Source: https://lair.lighton.ai/akronomicon/
+
+Archived source: https://web.archive.org/web/20211220142906/https://lair.lighton.ai/akronomicon/
+
+Data also available on GitHub: https://github.com/lightonai/akronomicon/blob/main/akrodb/NVIDIA/Megatron-LM.json","""The resulting aggregate
+corpus contains 174 GB of deduplicated text.""",2026-05-25 12:11:22+00:00,True,
+2954,RoBERTa Large,2019,2019.4956,2019-07-01,Facebook; University of Washington,Mixed or collaboration,Language,Language,355000000.0,42666666666.0,8.5067e+21,"Hardware,Operation counting,Third-party estimation",True,Confident,,https://arxiv.org/abs/1907.11692,"355M 
+https://github.com/facebookresearch/fairseq/blob/main/examples/roberta/README.md","160GB*200M words/GB * (4 tokens / 3 words) = 3.2e10 tokens
+
+max steps 500k
+batch size  8k
+""We pretrain with sequences of at most T = 512 tokens.""
+
+500000*8000*512 = 2.048e+12 tokens",2026-05-25 12:11:23+00:00,True,
+2909,T5-11B,2019,2019.8077,2019-10-23,Google,Industry,Language,Language,11000000000.0,34000000000.0,3.3e+22,"Reported,Operation counting,Third-party estimation",True,Confident,,https://arxiv.org/abs/1910.10683,The full 11-billion parameter model,"""This produces a collection of text that is not only
+orders of magnitude larger than most data sets used for pre-training (about 750 GB) but also comprises reasonably clean and natural English text. We dub this data set the “Colossal Clean Crawled Corpus” (or C4 for short) and release it as part of TensorFlow Datasets""
+
+750GB * 200M word/GB * 4/3 tokens per word = 2e11.
+
+Total tokens seen is about 1T:  ""We therefore pre-train our models for 1 million steps on a batch size of 2^11 sequences of length 512, corresponding to a total of about 1 trillion pre-training tokens""",2026-05-25 12:11:24+00:00,True,
+2908,T5-3B,2019,2019.8077,2019-10-23,Google,Industry,Language,Language,2800000000.0,5100000000.0,9.0000000001e+21,"Third-party estimation,Reported",True,Confident,,https://arxiv.org/abs/1910.10683,"page 37, 3B and 11B. ""To further explore what kind of performance is possible when using larger models, we consider two additional variants. In both cases, we use d_model = 1024, a 24 layer encoder and decoder, and dkv = 128. For the “3B” variant, we use dff = 16,384 with 32-headed attention, which results in around 2.8 billion parameters; for “11B” we use dff = 65,536 with 128-headed attention producing a model with about 11 billion parameters""","""This produces a collection of text that is not only orders of magnitude larger than most data sets used for pre-training (about 750 GB) but also
+comprises reasonably clean and natural English text. We dub this data set the “Colossal Clean Crawled Corpus” (or C4 for short) and release it as part of TensorFlow Datasets""
+750GB * 200M word/GB = 1.5e11
+
+""In total, this batch size and number of steps corresponds to pre-training on 2^35 ≈ 34B tokens.""
+""Note that 2^35 tokens only covers a fraction of the entire C4 data set, so we never repeat any data during pre-training.""
+The fraction is 25.5 billion / 150 billion = 0.17 epochs.",2026-05-25 12:11:24+00:00,True,
+2903,XLM-RoBERTa,2019,2019.8433,2019-11-05,Facebook AI,Industry,Language,Language,550000000.0,167000000000.0,2.076e+22,Operation counting,True,Confident,,https://arxiv.org/abs/1911.02116,"The number of parameters in the model is specified as ""550M params"" for XLM-R.",size of CC100 - copied from other rows,2026-05-25 12:11:22+00:00,True,
+2979,XLNet,2019,2019.4134,2019-06-01,Carnegie Mellon University (CMU); Google Brain,Mixed or collaboration,Language,Language,340000000.0,32890000000.0,6.19e+21,"Hardware,Operation counting",True,Confident,,https://arxiv.org/abs/1906.08237,"Same size as BERT-Large, which was 340M",,2026-05-25 12:10:49+00:00,True,
+2828,GPT-3 175B (davinci),2020,2020.4052,2020-05-28,OpenAI,Industry,Language,Language,174600000000.0,238000000000.0,3.14e+23,Reported,True,Confident,,https://arxiv.org/abs/2005.14165,"""we train GPT-3, an autoregressive language model with 175 billion parameters""
+Rather, it's 174.6 billion.
+Table D.1: 174,600 million parameters","From table 2.2, we determine that there are 410 + 19 + 12 + 55 + 3 = 499 billion tokens. 
+
+We multiply this by 0.75 to give 374B words. 
+
+3.74e11
+
+========================
+[Anson: I think the calculation below doesn't look at all the data, the CommonCrawl data only constitutes 60% of the data. Multiplying by 5/3 gives 4.75e11]
+
+""The CommonCrawl data was downloaded from 41 shards of monthly CommonCrawl covering 2016 to 2019, constituting 45TB of compressed plaintext before filtering and 570GB after filtering, roughly equivalent to 400 billion byte-pair-encoded tokens. ""
+
+Converted to words using 
+http://extraconversion.com/data-storage/gigabits/gigabits-to-words.html
+
+2.85e11",2026-05-25 12:12:05+00:00,True,
+2812,GShard (dense),2020,2020.4956,2020-06-30,Google,Industry,Language,Language,2300000000.0,346666666667.0,4.765e+22,"Operation counting,Hardware",True,Confident,,https://arxiv.org/abs/2006.16668,"""Our best quality dense single Transformer model (2.3B parameters) achieving ∆BLEU of 6.1, was trained with GPipe [15] on 2048 TPU v3 cores for 6 weeks or total of 235.5 TPU v3 core-years.""","""We focus on improving the translation quality (measured in terms of BLEU score [48]) from all 100 languages to English. This resulted in approximately 13 billion training examples to be used for model training""
+
+Each example is a sentence pair. Assuming 20 words per sentence and 4/3 tokens per word, that is 13*20*4/3 billion tokens",2026-09-03 20:00:14+00:00,True,
+2873,Meena,2020,2020.0739,2020-01-28,Google Brain,Industry,Language,Language,2600000000.0,53333333333.333336,1.12e+23,"Hardware,Operation counting,Third-party estimation",True,Confident,,https://arxiv.org/abs/2001.09977,"""We present Meena, a multi-turn open-domain chatbot trained end-to-end on data mined and filtered from public domain social media conversations. This 2.6B parameter neural network is simply trained to minimize perplexity of the next token.""","""The final Meena dataset contains 341GB of text
+(40B words)""
+
+Converting from GB to words yields 6.8e10, which is in the same OOM",2026-05-25 12:12:07+00:00,True,
+2784,mT5-XXL,2020,2020.8022,2020-10-20,Google; Google Research,Industry,Language,Language,13000000000.0,1000000000000.0,8.2e+22,Operation counting,True,Confident,,https://aclanthology.org/2021.naacl-main.41/,13 billion,"The model was trained on a subset of 1 trillion tokens.
+Full mC4 corpus has data ""totaling 6.6B pages and 6.3T tokens""
+Distribution by language is in Appendix A.",2026-01-06 00:38:03+00:00,True,
+2543,ERNIE 3.0 Titan,2021,2021.9747,2021-12-23,Baidu; Peng Cheng Laboratory,Mixed or collaboration,Language,Language,260000000000.0,668000000000.0,1.0421e+24,Operation counting,True,Confident,,https://arxiv.org/abs/2112.12731,"""[We] developed... distributed training technology, including fine-grained parallelism, heterogeneous hardware-aware training, and fault tolerance mechanism to train the 260B model on both Nvidia V100 GPU and Ascend 910 NPU clusters.""
+See also:
+https://twitter.com/BaiduResearch/status/1468633977242243078?t=6q4zuLNdTSc4GUBe9OM5Aw&s=19","""To ensure the success of the pre-training of ERNIE 3.0 Titan, we utilize the ERNIE 3.0 Corpus [ 2 ], a large-scale, wide-variety, and high-quality Chinese text corpora amounting to 4TB""
+
+Assuming 167M words/tokens per GB",2026-05-25 12:15:09+00:00,True,
+2621,FLAN 137B,2021,2021.6708,2021-09-03,Google Research,Industry,Language,Language,137000000000.0,2490000000000.0,2.047e+24,Operation counting,True,Confident,LaMDA,https://arxiv.org/abs/2109.01652,"Abstract:
+""We take a 137B parameter pretrained language model and instruction tune it on over 60 NLP datasets verbalized via natural language instruction templates. We evaluate this instruction-tuned model, which we call FLAN, on unseen task types.""
+
+Many models seem to be using the same 137B base transformer model?","""Model architecture and pretraining. In our experiments, we use LaMDA-PT, a dense left-to-right, decoder-only transformer language model of 137B parameters (Thoppilan et al., 2022). This model is pretrained on a collection of web documents (including those with computer code), dialog data, and Wikipedia, tokenized into 2.49T BPE tokens with a 32k vocabulary using the  SentencePiece library (Kudo & Richardson, 2018). Around 10% of the pretraining data was non-English. Note that LaMDA-PT only has language model pretraining (c.f. LaMDA, which was finetuned for dialog).""",2026-05-25 12:14:27+00:00,False,"Derived from LaMDA. Its recorded training data describes the extra step, or the base model's data, rather than one full training run."
+2558,Gopher (280B),2021,2021.9336,2021-12-08,DeepMind,Industry,Language,Language,280000000000.0,300000000000.0,6.31e+23,Reported,True,Confident,,https://arxiv.org/abs/2112.11446,"Language modelling provides a step towards intelligent communication systems by harnessing large repositories of written human knowledge to better predict and understand the world. In this paper, we present an analysis of Transformer-based language model performance across a wide range of model scales -- from models with tens of millions of parameters up to a 280 billion parameter model called Gopher. These models are evaluated on 152 diverse tasks, achieving state-of-the-art performance across the majority. Gains from scale are largest in areas such as reading comprehension, fact-checking, and the identification of toxic language, but logical and mathematical reasoning see less benefit. We provide a holistic analysis of the training dataset and model's behaviour, covering the intersection of model scale with bias and toxicity. Finally we discuss the application of language models to AI safety and the mitigation of downstream harms.","""We train all models for 300 billion tokens with a 2048 token context window, using the Adam (Kingma and Ba, 2014) optimiser.""
+
+1 token ~ 0.75 words",2026-05-25 12:15:08+00:00,True,
+2615,HyperCLOVA 204B,2021,2021.6899,2021-09-10,NAVER,Industry,Language,Language,204000000000.0,560000000000.0,2.0000000001e+23,Not recorded,True,Speculative,,https://aibusiness.com/nlp/south-korea-s-naver-unveils-hyperscale-ai-platform-language-model-with-more-parameters-than-gpt-3,https://www.navercorp.com/navercorp_/ir/announce/2023/NAVER_CEO%20letter%20to%20shareholders_Aug%202023_Eng.pdf,"https://twitter.com/arankomatsuzaki/status/1397583304610783238
+https://venturebeat.com/ai/naver-trained-a-gpt-3-like-korean-language-model/",2025-11-28 11:53:44+00:00,True,
+2632,Jurassic-1-Jumbo,2021,2021.6078,2021-08-11,AI21 Labs,Industry,Language,Language,178000000000.0,300000000000.0,3.7e+23,Third-party estimation,True,Confident,,https://uploads-ssl.webflow.com/60fd4503684b466578c0d307/61138924626a6981ee09caf6_jurassic_tech_paper.pdf,"""Jurassic-1 models come in two sizes, where the Jumbo version, at 178B parameters, is the largest and most sophisticated language model ever released for general use by developers.""","""Our model was trained with the conventional self-supervised auto-regressive training objective on 300B tokens drawn from publicly available resources""
+
+1 token ~ 0.75 words",2025-11-28 11:53:44+00:00,True,
+2605,Megatron-Turing NLG 530B,2021,2021.7748,2021-10-11,Microsoft; Nvidia,Industry,Language,Language,530000000000.0,270000000000.0,8.586e+23,Third-party estimation,True,Confident,,https://arxiv.org/abs/2201.11990,,"""Our training dataset consists of 339 billion tokens and we
+trained MT-NLG on 270 billions tokens by blending the 15 training datasets as described above. We also set aside 2% of our data for validation.""
+
+1 token ~ 0.75 words",2026-05-25 12:14:25+00:00,True,
+2737,Switch,2021,2021.0274,2021-01-11,Google,Industry,Language,Language,1571000000000.0,86400000000.0,8.22e+22,Third-party estimation,True,Confident,,https://arxiv.org/abs/2101.03961,"""Combining expert, model and data parallelism, we design two large Switch Transformer models, one with 395 billion and 1.6 trillion parameters""
+Table 9 gives more precise count of 1571B parameters","""In our protocol we pre-train with 2^20 (1,048,576) tokens
+per batch for 550k steps amounting to 576B total tokens.""
+
+1 token ~ 0.75 words",2026-05-25 12:12:50+00:00,False,"Mixture of experts: only part of the parameters is used for each token. Epoch's parameter note describes expert parallelism and the paper is about sparse mixture of experts layers (https://arxiv.org/abs/2101.03961), so only part of the 1.57 trillion parameters is used for each token."
+2603,Yuan 1.0,2021,2021.7775,2021-10-12,Inspur,Industry,Language,Language,245730000000.0,180000000000.0,3.5380000000001e+23,Reported,True,Confident,,https://arxiv.org/abs/2110.04725,"Table 2: Parameters of Yuan models.
+""Parameters (billion)""","""Yuan 1.0 was trained on a new Chinese dataset of 5TB high-quality text that was built on 850TB raw data from Internet.""
+
+1 GB ~ 167M words in English or 333M words in Chinese. For a mixed dataset of mostly Chinese, 5TB may be equivalent to around 1T words.
+
+Table 2: 180B training tokens",2026-05-25 12:14:26+00:00,True,
+2360,Flan-PaLM 540B,2022,2022.7995,2022-10-20,Google,Industry,Language,Language,540000000000.0,1400000000.0,2.540000000001e+24,"Reported,Hardware",True,Confident,PaLM (540B),https://arxiv.org/abs/2210.11416,540B,,2026-11-12 04:03:20+00:00,False,"Derived from PaLM (540B). Its recorded training data describes the extra step, or the base model's data, rather than one full training run."
+2430,Minerva (540B),2022,2022.4901,2022-06-29,Google,Industry,Language,Language,540350000000.0,26000000000.0,2.7415e+24,Hardware,True,Confident,PaLM (540B),https://arxiv.org/abs/2206.14858,"""To further our understanding of the impact of scale on few-shot learning, we trained a 540-billion parameter, densely activated, Transformer language model, which we call Pathways Language Model (PaLM).""
+
+Our approach is to start with the PaLM pretrained decoder-only transformer language models Chowdhery et al. (2022), and further train (finetune) them on our mathematical dataset using an autoregressive objective.
+Table 2 contains the main model and training hyperparameters.
+
+See Table 2","""Our models were trained on a dataset of 38.5B tokens"" + PaLM
+
+upd 38.5B tokens - sie of the dataset, the model saw 26B tokens in 399k steps (see Table 2)",2026-11-12 04:03:20+00:00,False,"Derived from PaLM (540B). Its recorded training data describes the extra step, or the base model's data, rather than one full training run."
+2493,PaLM (540B),2022,2022.2546,2022-04-04,Google Research,Industry,Language,Language,540350000000.0,780000000000.0,2.5272e+24,Hardware,True,Confident,,https://arxiv.org/abs/2204.02311,"""To further our understanding of the impact of scale on few-shot learning, we trained a 540-billion parameter, densely activated, Transformer language model, which we call Pathways Language Model (PaLM).""","""The PaLM pretraining dataset consists of a high-quality corpus of 780 billion tokens that represent a wide range of natural language use cases.""
+
+1 token ~ 0.75 words",2026-11-12 04:03:20+00:00,True,
+2358,U-PaLM (540B),2022,2022.7995,2022-10-20,Google,Industry,Language,Language,540000000000.0,1300000000.0,2.53e+24,Comparison with other models,True,Confident,PaLM (540B),https://arxiv.org/abs/2210.11399,,,2026-11-12 04:03:20+00:00,False,"Derived from PaLM (540B). Its recorded training data describes the extra step, or the base model's data, rather than one full training run."
+1999,Falcon-180B,2023,2023.679,2023-09-06,Technology Innovation Institute,Government,Language,Language,180000000000.0,3500000000000.0,3.76e+24,"Reported,Operation counting",True,Confident,,https://falconllm.tii.ae/falcon-180b.html; https://arxiv.org/abs/2311.16867,"""Falcon 180B is a super-powerful language model with 180 billion parameters""",3.5 trillion tokens * (~3 words per 4 tokens) ~= 2.625 trillion words,2026-11-12 04:16:14+00:00,True,
+2162,PaLM 2,2023,2023.3532,2023-05-10,Google,Industry,Language,Language,340000000000.0,3600000000000.0,7.34e+24,Operation counting,True,Likely,,https://arxiv.org/abs/2305.10403,"Model Architecture: ""PaLM-2 is a new state-of-the-art language model. We have small, medium, and large variants that use stacked layers based on the Transformer architecture, with varying parameters depending on model size. Further details of model size and architecture are withheld from external publication.""
+However, the parameter count was leaked to CNBC: https://www.cnbc.com/2023/05/16/googles-palm-2-uses-nearly-five-times-more-text-data-than-predecessor.html","""The pre-training corpus is significantly larger than the corpus used to train PaLM"" so greater than 6e+11. According to the leaked documents viewed by CNBC, the corpus was 3.6 trillion tokens or around 2.7*10^12 words.
+
+https://www.cnbc.com/2023/05/16/googles-palm-2-uses-nearly-five-times-more-text-data-than-predecessor.html",2025-12-18 05:14:58+00:00,True,
+1327,Llama 3.1-405B,2024,2024.5585,2024-07-23,Meta AI,Industry,Language,Language,405000000000.0,15600000000000.0,3.8e+25,"Reported,Operation counting",True,Confident,,https://ai.meta.com/research/publications/the-llama-3-herd-of-models/,405B,15.6T tokens,2026-11-12 04:16:14+00:00,True,
+1407,Nemotron-4 340B,2024,2024.4517,2024-06-14,Nvidia,Industry,Language,Language,340000000000.0,9000000000000.0,1.7999999999999999e+25,"Operation counting,Hardware",True,Confident,,https://blogs.nvidia.com/blog/nemotron-4-synthetic-data-generation-llm-training/ ,340B,"9T training tokens.
+
+They first train on an 8T token dataset and then an additional 1T tokens, it's slightly unclear if that's more data or a partial second epoch
+
+6.75T words using 1 token = 0.75 words",2026-11-12 04:16:14+00:00,True,
+685,Llama Nemotron Ultra 253B,2025,2025.2081,2025-03-18,Nvidia,Industry,Language,Language,253000000000.0,603000000000.0,3.911001e+25,Operation counting,True,Likely,Llama 3.1-405B,https://arxiv.org/abs/2505.00949,"253B
+""Dense decoder-only Transformer model Network Architecture: Llama-3.1-405B-Instruct, customized through Neural Architecture Search (NAS)
+
+**This model was developed based on Llama-3.1-405B-Instruct
+** This model has 253B model parameters.""","KD + Continued Training: 
+""LN-Ultra is first trained with knowledge distillation for 65B tokens using the same distillation dataset, followed by 88B tokens of continued training on the Nemotron-H phase 4 pretraining dataset (NVIDIA et al., 2025)."" (from the paper)
+
+Reasoning training data (SFT): 
+for Super model (from the blog) ""60B tokens of synthetic data (representing 4M of the 30M generated samples)"" -> the entire dataset is ~450B tokens (Ultra model is likely to be trained on the entire dataset (""Likely"" confidence}
+
+65b+88b+450b = 603b tokens
+
+RL for Scientific Reasoning:140k h100 hours (240k samples)
+
+RL for instruction following: 30k prompts
+
+RL for chat: 50k prompts",2026-11-12 04:03:20+00:00,False,"Derived from Llama 3.1-405B. Its recorded training data describes the extra step, or the base model's data, rather than one full training run."

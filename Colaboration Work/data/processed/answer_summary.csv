@@ -1,0 +1,13 @@
+lens_id,lens_label,row_label,method,n_models,first_year,last_year,params_factor_per_year,data_factor_per_year,growth_factor_per_year,params_share,data_share,share_lo,share_hi,status
+all_models,All models,"All models, every year",dataset_size,1172,1950,2026,1.4712,1.6457,2.4213,0.4366,0.5634,0.4221,0.4485,ok
+all_models,All models,"All domains, 2010 onward",dataset_size,1082,2010,2026,2.0108,3.1975,6.4294,0.3754,0.6246,0.3592,0.3908,ok
+all_models,All models,"Language, 2010 onward",dataset_size,758,2010,2026,2.1291,3.8102,8.1122,0.361,0.639,0.345,0.3769,ok
+all_models,All models,"Language, 2010 to 2019",dataset_size,145,2010,2019,1.3511,1.64,2.2158,0.3782,0.6218,0.2216,0.5447,ok
+all_models,All models,"Language, 2020 onward",dataset_size,613,2020,2026,2.3023,4.757,10.9523,0.3484,0.6516,0.3203,0.3772,ok
+all_models,All models,"Vision, 2010 onward",dataset_size,229,2010,2026,2.0424,3.1851,6.5053,0.3813,0.6187,0.3548,0.4076,ok
+compute,Compute based,"All models, 2012 to 2026",tokens_processed,1192,2012,2026,2.0679,2.0625,4.2651,0.5009,0.4991,0.4714,0.5343,ok
+compute,Compute based,"Developer reported or hardware compute only, 2012 to 2026",tokens_processed,495,2012,2026,1.7778,1.6793,2.9856,0.5261,0.4739,0.4551,0.6,ok
+compute,Compute based,"Language models only, 2012 to 2026",tokens_processed,854,2012,2026,2.1644,2.6661,5.7704,0.4405,0.5595,0.4173,0.466,ok
+compute,Compute based,"Last five years only, 2022 to 2026",tokens_processed,788,2022,2026,2.2868,2.2132,5.0611,0.5101,0.4899,0.4432,0.5714,ok
+frontier,Frontier language,"Frontier language models, dataset size",dataset_size,25,2019,2024,4.0308,3.3633,13.5566,0.5347,0.4653,0.4698,0.6303,ok
+frontier,Frontier language,"Frontier language models, tokens processed",tokens_processed,25,2019,2024,4.0308,1.2512,5.0433,0.8615,0.1385,0.6976,1.0,ok

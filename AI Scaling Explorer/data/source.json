@@ -1,0 +1,9 @@
+{
+  "title": "Data on AI Models",
+  "publisher": "Epoch AI",
+  "url": "https://epoch.ai/data/ai-models",
+  "licence": "CC BY 4.0",
+  "accessed": "2026-11-05",
+  "file": "data/raw/epoch_ai_models.csv",
+  "citation": "Epoch AI, \"Data on AI Models\". Downloaded from https://epoch.ai/data/ai-models."
+}

@@ -1,0 +1,7 @@
+slice_id,slice_label,n_models,first_year,last_year,params_factor_per_year,data_factor_per_year,params_share,data_share,status
+all_years,"All models, every year",1171,1950,2026,1.4692,1.6439,0.4363,0.5637,ok
+all_2010,"All domains, 2010 onward",1081,2010,2026,1.9891,3.1533,0.3745,0.6255,ok
+language_2010,"Language, 2010 onward",757,2010,2026,2.1044,3.7657,0.3594,0.6406,ok
+language_2010_2019,"Language, 2010 to 2019",145,2010,2019,1.3284,1.6181,0.3711,0.6289,ok
+language_2020,"Language, 2020 onward",612,2020,2026,2.267,4.7599,0.3441,0.6559,ok
+vision_2010,"Vision, 2010 onward",228,2010,2026,2.0184,3.1304,0.381,0.619,ok

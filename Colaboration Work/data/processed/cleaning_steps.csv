@@ -1,0 +1,11 @@
+table,step,models_remaining
+models,Models in the Epoch AI snapshot,3728
+models,With a reported parameter count,2377
+models,With a reported training dataset size,1178
+models,With one unambiguous dataset size,1174
+models,With a positive size (needed for a log axis),1172
+models,With a publication date,1172
+compute_models,Models in the Epoch AI snapshot,3728
+compute_models,With a publication date,3715
+compute_models,With positive training compute,1429
+compute_models,With positive parameters as well,1272
