@@ -78,7 +78,7 @@ pytest
 
 The simplest route is Streamlit Community Cloud. Push the repository to GitHub, choose the repository and `app.py`, and pick Python 3.11. Put the deployed link and the submitted commit hash or tag here before you hand in:
 
-* Deployed URL: [add link]
+* Deployed URL: https://assignment3apptest.streamlit.app
 * Submitted commit or tag: [add hash or tag]
 
 Open the link in a private window with the network tab of your browser's developer tools open and check that it loads in under five seconds. Record the result in `PROVENANCE.md`.
