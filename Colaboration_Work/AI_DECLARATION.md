@@ -8,7 +8,7 @@ Each member completes their own section. Keep the shared sections as they are.
 
 ## 1. Tools used
 
-I used **Claude (Anthropic)**, a generative AI assistant, while building and merging this component. No other generative AI tool was used. [Each member edits this if it is not accurate for them.]
+The team used **Claude (Anthropic)**, a generative AI assistant, while building and merging this component. [Other members: if you used any other tool, name it here.]
 
 ## 2. What the AI helped with
 
@@ -37,7 +37,7 @@ For each member: say which lens you own, what you ran and checked yourself, and 
 
 * **Member A** ([name], [student ID]): lens 1, the pipeline and the merge. [What I ran and checked.]
 * **Member B** ([name], [student ID]): lens 2. [What I ran and checked.]
-* **Member C** ([name], [student ID]): lens 3. [What I ran and checked.]
+* **Member C** (Abhinandan Sharma, student ID: 26290078): lens 3 (frontier language models, from "Model Scaling Explorer"), the data dictionary and the provenance matrix. I rebuilt my cleaned file from Epoch's raw download with `clean_member3.py` and confirmed it matched column by column; recomputed my lens's growth splits independently with `verify_member3.py`; filtered the merged raw file myself and confirmed lens 3 has the same 31 models; checked all six excluded models against Epoch's notes and the papers; re-ran the pipeline and confirmed all seven processed files regenerate identically; and ran the test suite (30 of 30 passed). I can explain my lens's code and calculations.
 * **Member D** ([name], [student ID]): lens 4, the correlations and the missing data view. [What I ran and checked.]
 
 Limits the team is aware of: dataset size is counted in different units across domains, only models that report the needed numbers appear, the frontier sample is small, and the growth split rests on a rule of thumb that compute is about 6 × parameters × data.
