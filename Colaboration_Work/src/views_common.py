@@ -82,7 +82,7 @@ def interval_chart(rows: pd.DataFrame, height: int | None = None) -> go.Figure:
         fig.add_trace(go.Scatter(
             x=share, y=group["axis_label"], mode="markers+text", name=METHOD_SHORT[method],
             marker={"color": style["color"], "symbol": style["symbol"], "size": 12},
-            text=[f"{v:.0f}%" for v in share], textposition="top center", cliponaxis=False,
+            text=[f"{v:.0f}% ({lo:.0f} to {hi:.0f})" for v, lo, hi in zip(share, low, high)], textposition="top center", cliponaxis=False,
             error_x={"type": "data", "symmetric": False, "array": (high - share).tolist(),
                      "arrayminus": (share - low).tolist(), "color": style["color"], "thickness": 2},
             hovertemplate="%{y}<br>%{x:.1f}% from bigger models<extra></extra>",
