@@ -9,7 +9,7 @@ import streamlit as st
 from src.analysis import filter_models, option_counts
 from src.association import association_text, compare_associations, spearman, with_all_three
 from src.views_common import (
-    BLUE, EMPTY_TEXT, ORANGE, clean_layout, line_chart, plot, render_download, render_source_record, span,
+    BLUE, EMPTY_TEXT, ORANGE, big_numbers_as_text, clean_layout, line_chart, plot, render_download, render_source_record, span,
 )
 
 DEFAULT_START_YEAR = 2010
@@ -92,12 +92,21 @@ def _over_time(comp: pd.DataFrame, cov: pd.DataFrame) -> None:
         f"{len(comp):,} models published {span(comp)} that report both compute and parameters. {note} The vertical axes are logarithmic, "
         "so equal steps mean equal multiples. Years with only one or two models can swing a lot."
     )
-    with st.expander("Numbers behind the median chart"):
-        st.dataframe(yearly, hide_index=True, width="stretch", column_config={
+    with st.expander("Numbers behind the compute charts"):
+        st.markdown("**Every model in the left chart**")
+        every_model, every_config = big_numbers_as_text(
+            comp[["model_name", "publication_date", "training_compute_flops"]].sort_values("training_compute_flops", ascending=False),
+            {"model_name": "Model", "publication_date": "Publication date",
+             "training_compute_flops": st.column_config.NumberColumn("Training compute (FLOP)")},
+        )
+        st.dataframe(every_model, hide_index=True, width="stretch", column_config=every_config)
+        st.markdown("**Yearly medians in the right chart**")
+        yearly_table, yearly_config = big_numbers_as_text(yearly, {
             "release_year": st.column_config.NumberColumn("Publication year", format="%d"),
             "models": st.column_config.NumberColumn("Models (count)", format="%d"),
-            "median_compute": st.column_config.NumberColumn("Median compute (FLOP)", format="%.3e"),
+            "median_compute": st.column_config.NumberColumn("Median compute (FLOP)"),
         })
+        st.dataframe(yearly_table, hide_index=True, width="stretch", column_config=yearly_config)
 
 
 def _correlation(sel_models: pd.DataFrame, comp: pd.DataFrame, cov: pd.DataFrame) -> None:
@@ -134,9 +143,21 @@ def _correlation(sel_models: pd.DataFrame, comp: pd.DataFrame, cov: pd.DataFrame
         )
     st.caption(
         f"Both charts use the same {result['n_models']:,} models published {span(rows)}, so the two correlations compare like with like. Every point's "
-        "values are in the verification table below and each chart axis is logarithmic. Spearman correlation uses ranks, so it is not thrown off by the huge range of the numbers. "
+        "values are in the table below the charts and each chart axis is logarithmic. Spearman correlation uses ranks, so it is not thrown off by the huge range of the numbers. "
         "A positive value means higher compute goes with higher values." + pair_note
     )
+    with st.expander("Numbers behind these two charts"):
+        behind, behind_config = big_numbers_as_text(
+            rows[["model_name", "release_year", "parameters", "training_dataset_size", "training_compute_flops"]],
+            {
+                "model_name": "Model",
+                "release_year": st.column_config.NumberColumn("Year", format="%d"),
+                "parameters": st.column_config.NumberColumn("Parameters (count)", format="%.0f"),
+                "training_dataset_size": st.column_config.NumberColumn("Training dataset size (datapoints)", format="%.0f"),
+                "training_compute_flops": st.column_config.NumberColumn("Training compute (FLOP)"),
+            },
+        )
+        st.dataframe(behind, hide_index=True, width="stretch", column_config=behind_config)
 
 
 def _missing(cov: pd.DataFrame) -> None:
@@ -151,7 +172,7 @@ def _missing(cov: pd.DataFrame) -> None:
     fig.add_trace(go.Bar(y=labels, x=missing, orientation="h", name="Missing", marker_color=ORANGE, text=missing, textposition="inside", textfont={"color": "black"}))
     fig.update_layout(barmode="stack", legend={"orientation": "h", "y": -0.3})
     fig.update_xaxes(title="Models in selection (count)")
-    fig.update_yaxes(title="Number", autorange="reversed")
+    fig.update_yaxes(title="Measure (what a model reports)", autorange="reversed")
     plot(clean_layout(fig, 260))
     st.caption(
         f"{len(cov):,} models published {span(cov)}. Reported means present and above zero, not independently verified. The three bars can "
