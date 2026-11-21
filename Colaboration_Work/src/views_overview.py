@@ -17,7 +17,8 @@ def render_answer(text: str, cross_check: str = "") -> None:
     st.caption(
         "Descriptive only. The question assumes compute grew exponentially. This app does not test that: it measures how fast "
         "parameters and data rose, and their product stands in for compute. It follows the trend across every model that "
-        "discloses the numbers, not only the largest ones, and it does not show why labs chose those sizes."
+        "discloses the numbers, not only the largest ones, and it does not show why labs chose those sizes. The 95% ranges "
+        "show sampling noise only, not the choice of method."
     )
 
 
