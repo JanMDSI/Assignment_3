@@ -167,6 +167,27 @@ def render_change(filtered: pd.DataFrame, yearly: pd.DataFrame, snapshot: str, k
 # ---------------------------------------------------------------------- table
 
 
+SAFE_INTEGER = 2**53  # Streamlit number columns cannot hold larger values exactly and show a warning triangle
+
+
+def big_numbers_as_text(frame: pd.DataFrame, config: dict | None = None, reference: pd.DataFrame | None = None):
+    """Show columns with values above 2**53 (such as FLOP) as scientific notation text.
+
+    `reference` is the full table to judge by, so every page of a paged table is treated the same way.
+    Returns the new frame and column config.
+    """
+    frame = frame.copy()
+    config = dict(config or {})
+    judged = reference if reference is not None else frame
+    for column in frame.select_dtypes("number").columns:
+        if column in judged and judged[column].abs().max() > SAFE_INTEGER:
+            frame[column] = frame[column].map(lambda value: "" if pd.isna(value) else f"{value:.3e}")
+            old = config.get(column)
+            label = old.get("label") if isinstance(old, dict) else old
+            config[column] = st.column_config.TextColumn(label or column)
+    return frame, config
+
+
 def render_table(
     frame: pd.DataFrame,
     prefix: str,
@@ -188,9 +209,10 @@ def render_table(
     shown = ordered.iloc[start : start + page_size]
     st.caption(f"Rows {start + 1:,} to {start + len(shown):,} of {len(ordered):,}. Click a row to see its source record.")
 
+    display, display_config = big_numbers_as_text(shown[columns], column_config, reference=ordered)
     event = st.dataframe(
-        shown[columns], hide_index=True, width="stretch", on_select="rerun", selection_mode="single-row",
-        key=f"{prefix}_table_{sort_column}_{page_size}_{int(page)}_{len(ordered)}", column_config=column_config,
+        display, hide_index=True, width="stretch", on_select="rerun", selection_mode="single-row",
+        key=f"{prefix}_table_{sort_column}_{page_size}_{int(page)}_{len(ordered)}", column_config=display_config,
     )
     selected = event.selection.rows if event and event.selection else []
     if selected:
