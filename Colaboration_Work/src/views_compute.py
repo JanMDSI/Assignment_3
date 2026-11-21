@@ -56,12 +56,14 @@ def render_compute(compute: pd.DataFrame) -> None:
 
     st.subheader(
         f"{start} to {end}: about {whole['params_share']:.0%} of compute growth came from larger models "
-        f"and {whole['data_share']:.0%} from more training data."
+        f"and {whole['data_share']:.0%} from more training data (counted as tokens processed)."
     )
     st.write(
         f"Compute grew about {whole['growth_factor']:.1f} times a year, parameters {whole['params_factor']:.1f} times and tokens "
         f"processed {whole['data_factor']:.1f} times. 95% range for the larger models share: {whole['share_lo']:.0%} to "
-        f"{whole['share_hi']:.0%} ({whole['n_models']:,} models, release years {whole['first_year']} to {whole['last_year']})."
+        f"{whole['share_hi']:.0%} ({whole['n_models']:,} models, release years {whole['first_year']} to {whole['last_year']}). "
+        "The range shows how much the result moves if different models had been sampled. It does not cover the choice of method, "
+        "which is why the four sample choices below matter."
     )
 
     periods, dropped = _rows([
