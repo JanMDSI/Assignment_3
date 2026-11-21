@@ -96,7 +96,7 @@ Open the link in a private window with the network tab of your browser's develop
 
 ## Colours
 
-Bars and lines use blue and orange or red. The scatter plot uses the Okabe Ito palette plus black, designed for colour blind readers, and each category also gets its own marker shape. As a first check the palette was run through a simulation of red green and blue yellow colour blindness, and the closest pair of colours still differed clearly. Before you hand in, take a screenshot and run it through Coblis or Color Oracle as well, and note the result in `PROVENANCE.md`.
+Bars and lines use blue and orange or red. The scatter plot uses the Okabe Ito palette plus black, designed for colour blind readers, and each category also gets its own marker shape. python `src/cvd_check.py` simulates red green and blue yellow colour blindness on every set of colours that share a chart and fails if any two come closer than 15 on the CIELAB distance scale. A screenshot of the scatter plot was also checked in Coblis or Color Oracle, and both results are in `PROVENANCE.md`.
 
 ## Limits in short
 
@@ -127,7 +127,8 @@ src/views_all_models.py      lens 1
 src/views_compute.py         lens 2
 src/views_frontier.py        lens 3
 src/views_association.py     lens 4
+src/cvd_check.py             colour blindness check for the chart palette
 data/                        raw, samples, curation, processed, source.json
-tests/                       analysis, attribution, association, pipeline and app tests
+tests/                       analysis, attribution, association, pipeline, app and chart tests
 DATA_DICTIONARY.md  PROVENANCE.md  AI_DECLARATION.md
 ```
