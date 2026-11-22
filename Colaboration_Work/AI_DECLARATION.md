@@ -8,7 +8,7 @@ Each member completes their own section. Keep the shared sections as they are.
 
 ## 1. Tools used
 
-The team used **Claude (Anthropic)**, a generative AI assistant, while building and merging this component. [Other members: if you used any other tool, name it here.]
+The team used **Claude (Anthropic)**, a generative AI assistant, while building and merging this component. Other than that, a team member also used DeepSeek to troubleshoot errors while building lens 2. [Other members: if you used any other tool, name it here.]
 
 ## 2. What the AI helped with
 
