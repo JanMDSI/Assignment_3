@@ -2,13 +2,13 @@
 
 **Project:** The Rise of Artificial Intelligence: Data Narrative Studio
 **Component:** AI Scaling Explorer (merged from four team members' lenses)
-**Date:** [Day Month Year]
+**Date:** 23 November 2026
 
 Each member completes their own section. Keep the shared sections as they are.
 
 ## 1. Tools used
 
-The team used **Claude (Anthropic)**, a generative AI assistant, while building and merging this component. Other than that, a team member also used **DeepSeek** to troubleshoot errors while building lens 2. [Other members: if you used any other tool, name it here.]
+The team used **Claude (Anthropic)**, a generative AI assistant, while building and merging this component. Other than that, a team member also used **DeepSeek** to troubleshoot errors while building lens 2, and Member D (Rohit Khanna) used **ChatGPT (OpenAI)** to review the README and app, as recorded in the provenance matrix.
 
 ## 2. What the AI helped with
 
@@ -22,7 +22,7 @@ The team used **Claude (Anthropic)**, a generative AI assistant, while building 
 
 * The research question, the persona, the choice of the four lenses, the exclusion list for fine tuned and mixture of experts models, and the idea of comparing compute with parameters and dataset size by correlation came from the team and the assignment brief.
 * The AI did not create, estimate or edit any data values. The raw file is the unaltered Epoch AI download. Every number on screen is read from the processed files or calculated from them by code in `src/`.
-* The interpretation of results and the presentation are the team's own. [Edit if this is not accurate.]
+* The interpretation of results and the presentation are the team's own.
 
 ## 4. Data disclosure
 
@@ -38,8 +38,8 @@ For each member: say which lens you own, what you ran and checked yourself, and 
 * **Member A (Jan Keane Olajuwon, student ID: 26493320)**: lens 1 (all models, with data counted as dataset size), the shared pipeline `src/data.py` and the merge of the four lenses onto one snapshot, built with Visual Studio and edited in Code Claude (Anthropic) to make some code efficient. I moved the four apps onto the newest Epoch download (18 November 2026) and fixed a `ModuleNotFoundError` for `yaml` on my first local run by switching the citation file to JSON. I traced five random rows of `models.csv` back to their `raw_row` in the raw file and confirmed model name, parameters and dataset size matched in all five. I ran each original app's calculation on the merged raw file and compared it with `answer_summary.csv`: lens 1 and lens 2 were within one percentage point (largest gaps 0.71 and 0.00), and lens 3 tokens processed was 3.02 points apart, which I traced to the original using whole release years while the merge uses decimal years, and I recorded it as a fail with that cause in the provenance matrix. The team confirmed that all seven processed files regenerate identically from the raw file and that the test suite passes (30 of 30 on a clean clone of commit 97aed42). I deployed the app at https://assignment3apptest.streamlit.app/. I can explain my lens's code and calculations.
 * **Member B (Qryne Alisya Siera, student ID: 26207023):** lens 2 (compute and tokens processed, from “Compute Growth Attribution”) and the chart and colour checks, built with Visual Studio Code, with DeepSeek for troubleshooting errors, the chart audit, colour blindness script and chart test. I wrote prepare_data.py and app.py, which count data as tokens processed (compute ÷ (6 × parameters)) and split the yearly growth of compute between larger models and more data. Jan later combined them into the shared pipeline. I ran my unchanged code on the newest raw file and recomputed the 2012 to 2026 split in a separate script: 1,192 models, larger models 50.1% of growth, the same as answer_summary.csv. My original, earlier download gave 49.5% across 1,173 models, so that difference comes from the data, not the code. I recomputed compute ÷ (6 × parameters) from the raw file for all 1,272 usable models, and my four sample choices match the merged lens 2. For the charts, I checked all 18 against the rubric points on form, ran the colour script (closest pair 16.1) and a Color Oracle check on a screenshot of the scatter plot, and ran the chart test. I can explain my lens’s code and calculations.
 * **Member C** (Abhinandan Sharma, student ID: 26290078): lens 3 (frontier language models, from "Model Scaling Explorer"), the data dictionary and the provenance matrix. I rebuilt my cleaned file from Epoch's raw download with `clean_member3.py` and confirmed it matched column by column; recomputed my lens's growth splits independently with `verify_member3.py`; filtered the merged raw file myself and confirmed lens 3 has the same 31 models; checked all six excluded models against Epoch's notes and the papers; re-ran the pipeline and confirmed all seven processed files regenerate identically; and ran the test suite (30 of 30 passed). I can explain my lens's code and calculations.
-* **Member D** (Rohit Khanna, student ID: 25669108): lens 4, the correlations and the missing data view. [What I ran and checked.]
+* **Member D** (Rohit Khanna, student ID: 25669108): narrative and analytics review of the README and the opening screen (research question, persona, three user stories, on-screen answer and limitations), using ChatGPT (OpenAI) to compare the files against the brief. I checked the review against `README.md` and `app.py` and confirmed each element was present; the details are in my row of PROVENANCE.md.
 
 Limits the team is aware of: dataset size is counted in different units across domains, only models that report the needed numbers appear, the frontier sample is small, and the growth split rests on a rule of thumb that compute is about 6 × parameters × data.
 
-*Signed:* [Names] *Date:* [Date]
+*Signed:* Jan Keane Olajuwon, Qryne Alisya Siera, Abhinandan Sharma, Rohit Khanna *Date:* 23 November 2026
