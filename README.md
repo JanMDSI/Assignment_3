@@ -13,7 +13,7 @@ As AI training compute grew exponentially, how much of that growth stemmed from 
 * AI provenance matrix: [`Colaboration_Work/PROVENANCE.md`](Colaboration_Work/PROVENANCE.md)
 * Data and AI disclosure: [`Colaboration_Work/AI_DECLARATION.md`](Colaboration_Work/AI_DECLARATION.md)
 * Deployed app: https://assignment3apptest.streamlit.app
-* Assessed version: release tag: release tag v1.0
+* Assessed version: release tag v1.0
 
 The other folders hold each member's original app before the merge, kept for the record. They are not part of the submitted app.
 
